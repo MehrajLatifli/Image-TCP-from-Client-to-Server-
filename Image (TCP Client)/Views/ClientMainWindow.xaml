@@ -1,0 +1,112 @@
+﻿<Window x:Class="Image__TCP_Client_.ClientMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Image__TCP_Client_" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="Image TCP Client" Height="800" Width="800" Background="Bisque" Icon="Client.png">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <DockPanel>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0" x:Name="Listbox1" ItemsSource="{Binding FileList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Background="Bisque" MinHeight="500" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="VerticalContentAlignment" Value="Top"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate x:Name="it">
+
+                        <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Orientation="Horizontal" >
+
+
+                        </WrapPanel>
+
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"></RowDefinition>
+                                <RowDefinition Height="4*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" x:Name="border1" Width="200" Height="255"  BorderBrush="#FF25BFBF"  Background="White" BorderThickness="5" Margin="25,20,5,20">
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="10*"></RowDefinition>
+                                        <RowDefinition Height="4*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0" >
+                                        <Image x:Name="imagelb" Width="150" Height="150" Margin="0,8,0,0"  Source="{Binding FileİmagePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center" VerticalAlignment="Center" ></Image>
+                                        <Label Width="200" Height="5" Background="#FF25BFBF" Margin="0,4,0,0"></Label>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="1" >
+                                        <TextBox  x:Name="FileShortNameText" Text="{Binding Path=FileShortName}" FontSize="12" Foreground="#FF25BFBF" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                        <TextBox  x:Name="FileAddTimeText" Text="{Binding Path=FileAddDateTime}" FontSize="12" Foreground="#FF25BFBF" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                        <TextBox x:Name="FileNameText" Text= "{Binding Path=FilePath}" FontSize="12" Foreground="#FF25BFBF" FontWeight="Bold" Width="180" Height="20" Margin="5,0.5,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ImageSendButton" Grid.Column="2" Margin="15" FontSize="40" Background="CadetBlue" Foreground="White"  Command="{Binding SendImageCommand, IsAsync=True}">
+
+                    <Grid HorizontalAlignment="Stretch" Background="Transparent" Width="100" Height="120" Cursor="Hand" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0" Source="Image.png" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center"   />
+                        <TextBlock Grid.Row="1" FontSize="15"  Text="Send Image" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+
+                </Button>
+
+
+            </Grid>
+
+        </Grid>
+
+    </DockPanel>
+    
+</Window>

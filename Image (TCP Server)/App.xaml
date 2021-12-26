@@ -1,0 +1,9 @@
+﻿<Application x:Class="Image__TCP_Server_.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Image__TCP_Server_"
+             StartupUri="Views/ServerMainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
