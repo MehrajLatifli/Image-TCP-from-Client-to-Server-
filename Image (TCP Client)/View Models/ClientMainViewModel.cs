@@ -116,10 +116,10 @@ namespace Image__TCP_Client_.View_Models
 
 
 
+                addList(location);
                    
                 }
 
-                addList(location);
 
                 try
                 {
