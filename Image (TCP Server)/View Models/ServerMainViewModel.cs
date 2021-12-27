@@ -104,7 +104,7 @@ namespace Image__TCP_Server_.View_Models
 
             timer2.Tick += Timer2_Tick;
 
-            timer2.Start();
+      
 
             for (int i = 0; i < threadcount; i++)
             {
@@ -125,7 +125,7 @@ namespace Image__TCP_Server_.View_Models
                 ServerMainWindows.ImageListbox.Items.Clear();
 
                 timer.Start();
-                timer2.Start();
+              
             });
 
             ConnectCommand = new RelayCommand((sender) =>
@@ -134,20 +134,22 @@ namespace Image__TCP_Server_.View_Models
                 threadcount--;
 
                 timer.Start();
-                timer2.Start();
+
 
 
                 if (tbutton == false)
                 {
-
+                    timer2.Start();
 
                     ServerMainWindows.ConnectToggleButton.Content = "Disconnect";
                     threads.ElementAt(threadcount).Start();
                     Thread.Sleep(100);
                     MessageBox.Show($"Added to history");
-   
+
                     //ServerMainWindows.HistoryListbox.Items.Add($"\n {Texts}");
-              
+
+
+
 
 
                     ServerMainWindows.Title += $"{hs}";
@@ -208,6 +210,9 @@ namespace Image__TCP_Server_.View_Models
              
 
                     }
+
+                
+                               timer2.Stop();
 
                 }
 
@@ -366,6 +371,7 @@ namespace Image__TCP_Server_.View_Models
 
                                         hc = historylistboxdata2;
 
+                                        timer2.Start();
 
                                         if (!string.IsNullOrEmpty(listtext))
                                         {
@@ -390,17 +396,19 @@ namespace Image__TCP_Server_.View_Models
                                         }
 
                                     
-                                        if (message == "ok")
-                                        {
-                                            clientsocket.Shutdown(SocketShutdown.Both);
-                                            clientsocket.Dispose();
-                                            break;
-                                        }
-
-                              
-
 
                                     }
+
+                                   else
+                                    {
+
+                                        timer2.Stop();
+
+                                        clientsocket.Shutdown(SocketShutdown.Both);
+                                        clientsocket.Dispose();
+                                        break;
+                                    }
+
                                 }
                                 catch (Exception ex)
                                 {
@@ -408,6 +416,8 @@ namespace Image__TCP_Server_.View_Models
                                     MessageBox.Show($"Shutdown => Client ({ex.Message})");
 
                                 }
+
+
 
 
                             } while (true);
