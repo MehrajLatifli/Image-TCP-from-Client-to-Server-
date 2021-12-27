@@ -101,6 +101,11 @@ namespace Image__TCP_Client_.View_Models
             {
                 check = true;
 
+                if (!Directory.Exists("../../../Files"))
+                {
+                    Directory.CreateDirectory("../../../Files");
+                }
+
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
