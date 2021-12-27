@@ -243,9 +243,6 @@ namespace Image__TCP_Server_.View_Models
                 }
 
 
-
-
-
             }
 
             
